@@ -1,4 +1,5 @@
 #!/usr/local/lib/python3.6
+#!/usr/bin/env python3
 from sys import *
 from math import *
 
