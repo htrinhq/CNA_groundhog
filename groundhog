@@ -1,0 +1,23 @@
+#!/usr/local/lib/python3.6
+from sys import *
+from math import *
+
+def groundhog():
+	print(argv[1])
+
+def helper():
+	print("SYNOPSIS\n\t./groundhog period\n")
+	print("DESCRIPTION\n\tperiod\tthe number of days defining a period")
+
+def main():
+	if len(argv) != 2 or argv[1].isnumeric() == False:
+		print("INVALID USAGE")
+		helper()
+		exit (84)
+	elif argv[1] == "-h":
+		helper()
+	else:
+		groundhog()
+	return (0)
+
+exit (main())
