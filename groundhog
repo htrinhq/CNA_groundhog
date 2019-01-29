@@ -1,24 +1,33 @@
 #!/usr/bin/env python3
-"""Groundhog main file."""
 
+#GroundHog main file
 from sys import *
 from math import *
+import statistics
 
 def relativeTempEv(temperatures):
-    """Get the Relative Temperature Evolution"""
-    return 0
+    #Get the Relative Temperature Evolution
+    diff = []
+    for index, temp in enumerate(temperatures, 0):
+        if index == 0:
+            old = temp
+        else:
+            diff.append(temp - old)
+            old = temp
+    return statistics.median(diff)
 
 def tempIncreaseAvg(temperatures, period):
-    """Get the Temperature Increase Average"""
+    #Get the Temperature Increase Average
     actual = len(temperatures) - 1
     return round(((temperatures[actual] - temperatures[actual - period])
     / temperatures[actual - period]) * 100, 0)
 
 def standardDeviation(temperatures, period):
-    return 1
+    #Get the Standard Deviation
+    return 0
 
 def display(temperatures, period):
-    """Display Stats about Temperatures"""
+    #Display Stats about Temperatures
     r = tempIncreaseAvg(temperatures, period)
     g = relativeTempEv(temperatures)
     s = standardDeviation(temperatures, period)
@@ -26,7 +35,7 @@ def display(temperatures, period):
     "s=" + "{0:.2f}".format(s), sep="\t")
 
 def groundhog():
-    """main loop for groundhog program"""
+    #main loop for groundhog program
     period = int(argv[1])
     temperatures = []
     while (42):
@@ -46,12 +55,12 @@ def groundhog():
     print("Temperatures Detection Ended")
 
 def helper():
-    """Display Help for launch"""
+    #Display Help for launch
     print("SYNOPSIS\n\t./groundhog period\n")
     print("DESCRIPTION\n\tperiod\tthe number of days defining a period")
 
 def main():
-    """main"""
+    #main
     if len(argv) != 2 or argv[1].isnumeric() == False:
         print("INVALID USAGE")
         helper()
