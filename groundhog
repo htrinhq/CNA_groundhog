@@ -4,19 +4,46 @@
 from sys import *
 from math import *
 
-def display():
-    """Display DISPLAY"""
-    print("DISPLAY")
+def relativeTempEv(temperatures):
+    """Get the Relative Temperature Evolution"""
+    return 0
+
+def tempIncreaseAvg(temperatures, period):
+    """Get the Temperature Increase Average"""
+    actual = len(temperatures) - 1
+    return round(((temperatures[actual] - temperatures[actual - period])
+    / temperatures[actual - period]) * 100, 0)
+
+def standardDeviation(temperatures, period):
+    return 1
+
+def display(temperatures, period):
+    """Display Stats about Temperatures"""
+    r = tempIncreaseAvg(temperatures, period)
+    g = relativeTempEv(temperatures)
+    s = standardDeviation(temperatures, period)
+    print("g=" + "{0:.2f}".format(g), "r=" + "{0:.0f}".format(r) + "%",
+    "s=" + "{0:.2f}".format(s), sep="\t")
 
 def groundhog():
     """main loop for groundhog program"""
-    period = argv[1]
-    temperature = []
+    period = int(argv[1])
+    temperatures = []
     while (42):
         temp = input()
         if temp == "STOP":
             break
-        temperature.append(temp)
+        try:
+            temp = float(temp)
+        except ValueError:
+            print("INVALID TEMPERATURE")
+            continue
+        temperatures.append(temp)
+        if len(temperatures) <= period:
+            print("g=nan", "r=nan%", "s=nan", sep="\t")
+        else:
+            display(temperatures, period)
+    print("Temperatures Detection Ended")
 
 def helper():
     """Display Help for launch"""
@@ -35,5 +62,5 @@ def main():
         groundhog()
         return (0)
 
-if __name__ == "main":
+if __name__ == "__main__":
     main()
