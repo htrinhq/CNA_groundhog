@@ -1,24 +1,39 @@
-#!/usr/local/lib/python3.6
 #!/usr/bin/env python3
+"""Groundhog main file."""
+
 from sys import *
 from math import *
 
+def display():
+    """Display DISPLAY"""
+    print("DISPLAY")
+
 def groundhog():
-	print(argv[1])
+    """main loop for groundhog program"""
+    period = argv[1]
+    temperature = []
+    while (42):
+        temp = input()
+        if temp == "STOP":
+            break
+        temperature.append(temp)
 
 def helper():
-	print("SYNOPSIS\n\t./groundhog period\n")
-	print("DESCRIPTION\n\tperiod\tthe number of days defining a period")
+    """Display Help for launch"""
+    print("SYNOPSIS\n\t./groundhog period\n")
+    print("DESCRIPTION\n\tperiod\tthe number of days defining a period")
 
 def main():
-	if len(argv) != 2 or argv[1].isnumeric() == False:
-		print("INVALID USAGE")
-		helper()
-		exit (84)
-	elif argv[1] == "-h":
-		helper()
-	else:
-		groundhog()
-	return (0)
+    """main"""
+    if len(argv) != 2 or argv[1].isnumeric() == False:
+        print("INVALID USAGE")
+        helper()
+        exit (84)
+    elif argv[1] == "-h":
+        helper()
+    else:
+        groundhog()
+        return (0)
 
-exit (main())
+if __name__ == "main":
+    main()
