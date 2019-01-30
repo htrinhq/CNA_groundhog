@@ -3,18 +3,17 @@
 #GroundHog main file
 from sys import *
 from math import *
-import statistics
+from statistics import mean
 
-def relativeTempEv(temperatures):
+def relativeTempEv(temperatures, period):
     #Get the Relative Temperature Evolution
     diff = []
+    old = 0
     for index, temp in enumerate(temperatures, 0):
-        if index == 0:
-            old = temp
-        else:
+        if index >= (len(temperatures) - period):
             diff.append(temp - old)
-            old = temp
-    return statistics.median(diff)
+        old = temp
+    return mean(diff)
 
 def tempIncreaseAvg(temperatures, period):
     #Get the Temperature Increase Average
@@ -29,10 +28,10 @@ def standardDeviation(temperatures, period):
 def display(temperatures, period):
     #Display Stats about Temperatures
     r = tempIncreaseAvg(temperatures, period)
-    g = relativeTempEv(temperatures)
+    g = relativeTempEv(temperatures, period)
     s = standardDeviation(temperatures, period)
     print("g=" + "{0:.2f}".format(g), "r=" + "{0:.0f}".format(r) + "%",
-    "s=" + "{0:.2f}".format(s), sep="\t")
+    "s=" + "{0:.2f}".format(s), sep="\t\t")
 
 def groundhog():
     #main loop for groundhog program
@@ -49,7 +48,7 @@ def groundhog():
             continue
         temperatures.append(temp)
         if len(temperatures) <= period:
-            print("g=nan", "r=nan%", "s=nan", sep="\t")
+            print("g=nan", "r=nan%", "s=nan", sep="\t\t")
         else:
             display(temperatures, period)
     print("Temperatures Detection Ended")
