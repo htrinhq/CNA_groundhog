@@ -5,14 +5,17 @@ from sys import *
 from math import *
 from statistics import mean
 from statistics import pstdev
+from statistics import pvariance
 
 def relativeTempEv(temperatures, period):
     #Get the Relative Temperature Evolution
     diff = []
-    old = 0
     for index, temp in enumerate(temperatures, 0):
         if index >= (len(temperatures) - period):
-            diff.append(temp - old)
+            if temp <= old:
+                diff.append(0)
+            else:
+                diff.append(temp - old)
         old = temp
     return mean(diff)
 
