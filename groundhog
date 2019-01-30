@@ -38,6 +38,16 @@ def display(temperatures, period):
     print("g=" + "{0:.2f}".format(g), "r=" + "{0:.0f}".format(r) + "%",
     "s=" + "{0:.2f}".format(s), sep="\t\t")
 
+def chooseDisplay(temperatures, period):
+    #Select correct output to display
+    if len(temperatures) < period:
+        print("g=nan", "r=nan%", "s=nan", sep="\t\t")
+    elif len(temperatures) == period:
+        print("g=nan", "r=nan%", "s=" +
+        "{0:.2f}".format(standardDeviation(temperatures, period)), sep="\t\t")
+    else:
+        display(temperatures, period)
+
 def groundhog():
     #main loop for groundhog program
     period = int(argv[1])
@@ -52,10 +62,7 @@ def groundhog():
             print("INVALID TEMPERATURE")
             continue
         temperatures.append(temp)
-        if len(temperatures) <= period:
-            print("g=nan", "r=nan%", "s=nan", sep="\t\t")
-        else:
-            display(temperatures, period)
+        chooseDisplay(temperatures, period)
     print("Temperatures Detection Ended")
 
 def helper():
