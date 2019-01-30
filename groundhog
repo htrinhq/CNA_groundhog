@@ -4,6 +4,7 @@
 from sys import *
 from math import *
 from statistics import mean
+from statistics import pstdev
 
 def relativeTempEv(temperatures, period):
     #Get the Relative Temperature Evolution
@@ -22,8 +23,12 @@ def tempIncreaseAvg(temperatures, period):
     / temperatures[actual - period]) * 100, 0)
 
 def standardDeviation(temperatures, period):
-    #Get the Standard Deviation
-    return 0
+    #Get the Standard Deviation of temperatures sample
+    sample = []
+    for index, temp in enumerate(temperatures, 0):
+        if index >= (len(temperatures) - period):
+            sample.append(temp)
+    return pstdev(sample)
 
 def display(temperatures, period):
     #Display Stats about Temperatures
