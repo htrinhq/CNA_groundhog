@@ -3,8 +3,7 @@
 #GroundHog main file.
 from sys import *
 from math import *
-from statistics import mean
-from statistics import pstdev
+from statistics import mean, pstdev
 from stats import *
 from display import *
 

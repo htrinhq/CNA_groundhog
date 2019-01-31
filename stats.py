@@ -1,7 +1,6 @@
 #Stats functions for GroundHog.
 
-from statistics import mean
-from statistics import pstdev
+from statistics import mean, pstdev
 
 def add_to_list(temp: float, old: float, diff: [float]):
     """Check value to append to the diff list."""
