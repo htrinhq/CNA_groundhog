@@ -1,35 +1,34 @@
-#Stats functions for GroundHog
+#Stats functions for GroundHog.
 
-from statistics import mean
-from statistics import pstdev
+from statistics import mean, pstdev
 
-def addToList(temp, old, diff):
-    #Check value to append to the diff list
+def add_to_list(temp: float, old: float, diff: [float]):
+    """Check value to append to the diff list."""
     if temp <= old:
         diff.append(0)
     else:
         diff.append(temp - old)
 
 
-def relativeTempEv(temperatures, period):
-    #Get the Relative Temperature Evolution
+def relative_temp_ev(temperatures: [float], period: int) -> float:
+    """Get the Relative Temperature Evolution."""
     diff = []
     for index, temp in enumerate(temperatures, 0):
         if index >= (len(temperatures) - period):
-            addToList(temp, old, diff)
+            add_to_list(temp, old, diff)
         old = temp
     return mean(diff)
 
 
-def tempIncreaseAvg(temperatures, period):
-    #Get the Temperature Increase Average
+def temp_increase_avg(temperatures: [float], period: int) -> float:
+    """Get the Temperature Increase Average."""
     actual = len(temperatures) - 1
     return round(((temperatures[actual] - temperatures[actual - period])
                   / temperatures[actual - period]) * 100, 0)
 
 
-def standardDeviation(temperatures, period):
-    #Get the Standard Deviation of temperatures sample
+def standard_deviation(temperatures: [float], period: int) -> float:
+    """Get the Standard Deviation of temperatures sample."""
     sample = []
     for index, temp in enumerate(temperatures, 0):
         if index >= (len(temperatures) - period):
@@ -37,18 +36,18 @@ def standardDeviation(temperatures, period):
     return pstdev(sample)
 
 
-def getSwitch(val):
-    #Save Temperature change value
-    actual = len(getSwitch.value)
-    getSwitch.value.append(val)
-    if len(getSwitch.value) >= 2 and ((getSwitch.value[actual] >= 0 and
-                                       getSwitch.value[actual - 1] < 0) or
-                                      (getSwitch.value[actual] < 0 and getSwitch.value[actual - 1] >= 0)):
-        getSwitch.count += 1
+def get_switch(val) -> bool:
+    """Save Temperature change value."""
+    actual = len(get_switch.value)
+    get_switch.value.append(val)
+    if len(get_switch.value) >= 2 and ((get_switch.value[actual] >= 0 and
+       get_switch.value[actual - 1] < 0) or
+      (get_switch.value[actual] < 0 and get_switch.value[actual - 1] >= 0)):
+        get_switch.count += 1
         return True
     else:
         return False
 
 
-getSwitch.value = []
-getSwitch.count = 0
+get_switch.value = []
+get_switch.count = 0

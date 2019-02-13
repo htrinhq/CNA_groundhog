@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 
-#GroundHog main file
+#GroundHog main file.
 from sys import *
 from math import *
-from statistics import mean
-from statistics import pstdev
+from statistics import mean, pstdev
 from stats import *
 from display import *
 
 def groundhog():
-    #main loop for groundhog program
+    """main loop for groundhog program."""
     period = int(argv[1])
     temperatures = []
     while (42):
@@ -22,11 +21,11 @@ def groundhog():
             print("INVALID TEMPERATURE")
             continue
         temperatures.append(temp)
-        chooseDisplay(temperatures, period)
-    print("Global tendency switched " + str(getSwitch.count) + " times")
+        choose_display(temperatures, period)
+    print("Global tendency switched " + str(get_switch.count) + " times")
 
 def main():
-    #main
+    """main."""
     if len(argv) != 2 or argv[1].isnumeric() == False:
         print("INVALID USAGE")
         helper()
