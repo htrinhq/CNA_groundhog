@@ -1,6 +1,6 @@
 #Stats functions for GroundHog.
 
-from statistics import mean, pstdev
+from statistics import mean, pstdev, stdev
 
 def add_to_list(temp: float, old: float, diff: [float]):
     """Check value to append to the diff list."""
@@ -48,6 +48,30 @@ def get_switch(val) -> bool:
     else:
         return False
 
+def bbands(temps, length, numsd=1):
+    """ returns average, upper band, and lower band"""
+    ave = mean(temps[len(temps) - length:])
+    sd = stdev(temps[len(temps) - length:])
+    upband = ave + (sd*numsd)
+    dnband = ave - (sd*numsd)
+    return ave, upband, dnband
+
+def find_aberrations(temperatures: [float], period: int):
+    middle, upper, lower = bbands(temperatures, period)
+    if (temperatures[-1] < lower):
+        aberrations_values.append([temperatures[-1], abs(temperatures[-1] - middle)])
+    elif (temperatures[-1] > upper):
+        aberrations_values.append([temperatures[-1], abs(temperatures[-1] - middle)])
+
+def get_aberrations() -> [float]:
+    result: [float] = []
+
+    aberrations_values.sort(key=lambda x:x[1])
+    for i in range(len(aberrations_values)):
+        result.append(aberrations_values[i][0])
+    return (result[-5:])
+
+aberrations_values: [float] = []
 
 get_switch.value = []
 get_switch.count = 0

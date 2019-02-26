@@ -11,6 +11,7 @@ def groundhog():
     """main loop for groundhog program."""
     period = int(argv[1])
     temperatures = []
+    forecast = -1
     while (42):
         temp = input()
         if temp == "STOP":
@@ -23,6 +24,8 @@ def groundhog():
         temperatures.append(temp)
         choose_display(temperatures, period)
     print("Global tendency switched " + str(get_switch.count) + " times")
+    print("5 weirdest values are " + str(get_aberrations()))
+
 
 def main():
     """main."""

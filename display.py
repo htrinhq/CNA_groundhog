@@ -14,17 +14,18 @@ def display(temperatures: [float], period: int):
         print("g=" + "{0:.2f}".format(g), "r=" + "{0:.0f}".format(r) + "%",
               "s=" + "{0:.2f}".format(s), sep="\t")
 
-
 def choose_display(temperatures: [float], period: int):
     """Select correct output to display."""
     if len(temperatures) < period:
         print("g=nan", "r=nan%", "s=nan", sep="\t")
     elif len(temperatures) == period:
         print("g=nan", "r=nan%", "s=" +
-              "{0:.2f}".format(standard_deviation(temperatures, period)), 
+              "{0:.2f}".format(standard_deviation(temperatures, period)),
               sep="\t")
     else:
         display(temperatures, period)
+    if (len(temperatures) >= period):
+       find_aberrations(temperatures, period)
 
 def helper():
     """Display Help for launch."""
