@@ -57,15 +57,18 @@ def bbands(temps, length, numsd=1):
     return ave, upband, dnband
 
 def find_aberrations(temperatures: [float], period: int):
+    """ compute aberrations from bollinger bands """
     middle, upper, lower = bbands(temperatures, period)
     if (temperatures[-1] < lower):
-        aberrations_values.append([temperatures[-1], abs(temperatures[-1] - middle)])
+        aberrations_values.append([temperatures[-1],
+            abs(temperatures[-1] - middle)])
     elif (temperatures[-1] > upper):
-        aberrations_values.append([temperatures[-1], abs(temperatures[-1] - middle)])
+        aberrations_values.append([temperatures[-1],
+            abs(temperatures[-1] - middle)])
 
 def get_aberrations() -> [float]:
+    """ sort aberrations from ascending order and return 5 last values """
     result: [float] = []
-
     aberrations_values.sort(key=lambda x:x[1])
     for i in range(len(aberrations_values)):
         result.append(aberrations_values[i][0])
