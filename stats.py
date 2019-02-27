@@ -72,7 +72,7 @@ def get_aberrations() -> [float]:
     aberrations_values.sort(key=lambda x:x[1])
     for i in range(len(aberrations_values)):
         result.append(aberrations_values[i][0])
-    return (result[-5:])
+    return (sorted(result[-5:]))
 
 aberrations_values: [float] = []
 
