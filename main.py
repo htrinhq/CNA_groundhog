@@ -11,7 +11,6 @@ def groundhog():
     """main loop for groundhog program."""
     period = int(argv[1])
     temperatures = []
-    forecast = -1
     while (42):
         temp = input()
         if temp == "STOP":
@@ -19,7 +18,7 @@ def groundhog():
         try:
             temp = float(temp)
         except ValueError:
-            print("INVALID TEMPERATURE")
+            stderr.write("INVALID TEMPERATURE")
             continue
         temperatures.append(temp)
         choose_display(temperatures, period)
