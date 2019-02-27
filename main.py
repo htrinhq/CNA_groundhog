@@ -11,6 +11,7 @@ def groundhog():
     """main loop for groundhog program."""
     period = int(argv[1])
     temperatures = []
+    aberrations = []
     while (42):
         temp = input()
         if temp == "STOP":
@@ -18,12 +19,17 @@ def groundhog():
         try:
             temp = float(temp)
         except ValueError:
-            stderr.write("INVALID TEMPERATURE")
+            stderr.write("INVALID TEMPERATURE\n")
             continue
         temperatures.append(temp)
         choose_display(temperatures, period)
     print("Global tendency switched " + str(get_switch.count) + " times")
-    print("5 weirdest values are " + str(get_aberrations()))
+    aberrations = get_aberrations()
+    if len(aberrations) == 0:
+        print('No weird values')
+    else:
+        print(str(len(aberrations)) + " weirdest values are "
+        + str(aberrations))
 
 
 def main():
