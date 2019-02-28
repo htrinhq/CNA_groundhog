@@ -7,8 +7,7 @@ def display(temperatures: [float], period: int):
     r = temp_increase_avg(temperatures, period)
     g = relative_temp_ev(temperatures, period)
     s = standard_deviation(temperatures, period)
-    if (get_switch(r) == True and period >= 2
-            and s > standard_deviation(temperatures[:len(temperatures) - 1], period)):
+    if get_switch(r, temperatures, period):
         print("g=" + "{0:.2f}".format(g), "r=" + "{0:.0f}".format(r) + "%",
               "s=" + "{0:.2f}".format(s), "a switch occurs", sep="\t")
     else:

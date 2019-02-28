@@ -40,10 +40,14 @@ def standard_deviation(temperatures: [float], period: int) -> float:
     return pstdev(sample)
 
 
-def get_switch(val) -> bool:
+def get_switch(increase_avg: float, temperatures: [float], period: int) -> bool:
     """Save Temperature change value."""
     actual = len(get_switch.value)
-    get_switch.value.append(val)
+    get_switch.value.append(increase_avg)
+    s = standard_deviation(temperatures, period)
+    prev_s = standard_deviation(temperatures[:len(temperatures) - 1], period)
+    if (period < 2 or s < prev_s):
+        return False
     if len(get_switch.value) >= 2 and ((get_switch.value[actual] >= 0 and
        get_switch.value[actual - 1] < 0) or
       (get_switch.value[actual] < 0 and get_switch.value[actual - 1] >= 0)):
@@ -62,6 +66,8 @@ def bbands(temps, length, numsd=1):
 
 def find_aberrations(temperatures: [float], period: int):
     """ compute aberrations from bollinger bands """
+    if (period <= 1):
+        return
     middle, upper, lower = bbands(temperatures, period)
     if (temperatures[-1] < lower):
         aberrations_values.append([temperatures[-1],
