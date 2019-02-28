@@ -19,8 +19,8 @@ def groundhog():
     while (42):
         try:
             temp = input()
-        except EOFError:
-            return
+        except (EOFError, KeyboardInterrupt):
+            exit (84)
         if temp == "STOP":
             break
         try:
