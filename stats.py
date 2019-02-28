@@ -11,7 +11,7 @@ def add_to_list(temp: float, old: float, diff: [float]):
 
 
 def relative_temp_ev(temperatures: [float], period: int) -> float:
-    """Get the Relative Temperature Evolution."""
+    """Get the Relative Temperature Evolution. ()"""
     diff = []
     for index, temp in enumerate(temperatures, 0):
         if index >= (len(temperatures) - period):
@@ -21,14 +21,18 @@ def relative_temp_ev(temperatures: [float], period: int) -> float:
 
 
 def temp_increase_avg(temperatures: [float], period: int) -> float:
-    """Get the Temperature Increase Average."""
+    """Get the Temperature Increase Average. (g)"""
     actual = len(temperatures) - 1
-    return round(((temperatures[actual] - temperatures[actual - period])
-                  / temperatures[actual - period]) * 100, 0)
+    try:
+        return round(((temperatures[actual] - temperatures[actual - period])
+            / temperatures[actual - period]) * 100, 0)
+    except ZeroDivisionError:
+        return round((temperatures[actual]
+            - temperatures[actual - period]) * 100, 0)
 
 
 def standard_deviation(temperatures: [float], period: int) -> float:
-    """Get the Standard Deviation of temperatures sample."""
+    """Get the Standard Deviation of temperatures sample. (s)"""
     sample = []
     for index, temp in enumerate(temperatures, 0):
         if index >= (len(temperatures) - period):

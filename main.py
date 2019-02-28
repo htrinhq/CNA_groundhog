@@ -13,7 +13,10 @@ def groundhog():
     temperatures = []
     aberrations = []
     while (42):
-        temp = input()
+        try:
+            temp = input()
+        except EOFError:
+            return
         if temp == "STOP":
             break
         try:
