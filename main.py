@@ -27,7 +27,7 @@ def groundhog():
             temp = float(temp)
         except ValueError:
             stderr.write("INVALID TEMPERATURE\n")
-            continue
+            exit (84)
         temperatures.append(temp)
         choose_display(temperatures, period)
     print("Global tendency switched " + str(get_switch.count) + " times")
