@@ -11,7 +11,7 @@ def add_to_list(temp: float, old: float, diff: [float]):
 
 
 def relative_temp_ev(temperatures: [float], period: int) -> float:
-    """Get the Relative Temperature Evolution. ()"""
+    """Get the Relative Temperature Evolution. (r)"""
     diff = []
     for index, temp in enumerate(temperatures, 0):
         if index >= (len(temperatures) - period):
