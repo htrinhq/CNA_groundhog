@@ -37,12 +37,13 @@ def groundhog():
 
 def main():
     """main."""
-    if len(argv) != 2 or argv[1].isnumeric() == False:
+    if len(argv) == 2 and argv[1] == "-h":
+        helper()
+        exit (0)
+    elif len(argv) != 2 or argv[1].isnumeric() == False:
         print("INVALID USAGE")
         helper()
         exit (84)
-    elif argv[1] == "-h":
-        helper()
     else:
         groundhog()
         return (0)
