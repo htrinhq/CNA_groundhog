@@ -12,6 +12,10 @@ def groundhog():
     period = int(argv[1])
     temperatures = []
     aberrations = []
+    if period == 0:
+        print("INVALID USAGE")
+        helper()
+        exit(84)
     while (42):
         try:
             temp = input()
