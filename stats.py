@@ -46,7 +46,7 @@ def get_switch(increase_avg: float, temperatures: [float], period: int) -> bool:
     get_switch.value.append(increase_avg)
     s = standard_deviation(temperatures, period)
     prev_s = standard_deviation(temperatures[:len(temperatures) - 1], period)
-    if (period < 2 or s < prev_s):
+    if (s < prev_s):
         return False
     if len(get_switch.value) >= 2 and ((get_switch.value[actual] >= 0 and
        get_switch.value[actual - 1] < 0) or
