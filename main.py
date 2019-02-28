@@ -10,6 +10,7 @@ from display import *
 def groundhog():
     """main loop for groundhog program."""
     period = int(argv[1])
+    current_period = 0
     temperatures = []
     if period == 0:
         print("INVALID USAGE")
@@ -21,6 +22,8 @@ def groundhog():
         except (EOFError, KeyboardInterrupt):
             exit (84)
         if temp == "STOP":
+            if (current_period < period):
+                exit(84)
             break
         try:
             temp = float(temp)
@@ -29,6 +32,7 @@ def groundhog():
             exit (84)
         temperatures.append(temp)
         choose_display(temperatures, period)
+        current_period = current_period + 1
     print("Global tendency switched " + str(get_switch.count) + " times")
     print_aberrations()
     
