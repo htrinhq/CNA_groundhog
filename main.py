@@ -11,7 +11,6 @@ def groundhog():
     """main loop for groundhog program."""
     period = int(argv[1])
     temperatures = []
-    aberrations = []
     if period == 0:
         print("INVALID USAGE")
         helper()
@@ -31,14 +30,8 @@ def groundhog():
         temperatures.append(temp)
         choose_display(temperatures, period)
     print("Global tendency switched " + str(get_switch.count) + " times")
-    aberrations = get_aberrations()
-    if len(aberrations) == 0:
-        print('No weird values')
-    else:
-        print(str(len(aberrations)) + " weirdest values are "
-        + str(aberrations))
-
-
+    print_aberrations()
+    
 def main():
     """main."""
     if len(argv) == 2 and argv[1] == "-h":
