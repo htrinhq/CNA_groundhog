@@ -29,9 +29,9 @@ def choose_display(temperatures: [float], period: int):
        find_aberrations(temperatures, period)
 
 
-def print_aberrations():
+def print_aberrations(temperatures: [float]):
     """print aberrations on the standard output."""
-    aberrations = get_aberrations()
+    aberrations = temperatures
     if len(aberrations) == 0:
         print('No weird values')
     else:

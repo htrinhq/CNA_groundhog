@@ -34,7 +34,7 @@ def groundhog():
         choose_display(temperatures, period)
         current_period = current_period + 1
     print("Global tendency switched " + str(get_switch.count) + " times")
-    print_aberrations()
+    print_aberrations(temperatures)
 
 def main():
     """main."""
